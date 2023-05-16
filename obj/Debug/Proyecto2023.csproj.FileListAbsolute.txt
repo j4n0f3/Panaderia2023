@@ -1,0 +1,15 @@
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023\obj\Debug\Proyecto2023.csprojResolveAssemblyReference.cache
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023\bin\Debug\Proyecto2023.exe.config
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023\bin\Debug\Proyecto2023.exe
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023\bin\Debug\Proyecto2023.pdb
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023\obj\Debug\Proyecto2023.exe
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023\obj\Debug\Proyecto2023.pdb
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023_Funcionando\bin\Debug\Proyecto2023.exe.config
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023_Funcionando\bin\Debug\Proyecto2023.exe
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023_Funcionando\bin\Debug\Proyecto2023.pdb
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023_Funcionando\obj\Debug\Proyecto2023.csprojResolveAssemblyReference.cache
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023_Funcionando\obj\Debug\Proyecto2023.exe
+C:\Users\Jano\Downloads\Nueva carpeta\Proyecto2023_Funcionando\obj\Debug\Proyecto2023.pdb
+C:\Users\Jano\Desktop\Patas\Nueva carpeta\Proyecto2023(main)\obj\Debug\Proyecto2023.csprojResolveAssemblyReference.cache
+C:\Users\Jano\Desktop\Patas\Nueva carpeta\Proyecto2023(main)\obj\Debug\Proyecto2023.exe
+C:\Users\Jano\Desktop\Patas\Nueva carpeta\Proyecto2023(main)\obj\Debug\Proyecto2023.pdb
