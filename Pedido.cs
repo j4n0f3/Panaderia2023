@@ -18,22 +18,21 @@ namespace Proyecto2023
 	{	
 		//atributos
 		private int numeroDePedido ;
-		private int dni_Cliente;
 		private DateTime fechaDelEvento; //fecha en numeros y todo junto
 		private float gastoDeComida; //numero del gasto
 		private int mozos;  //cuantos mozos
 		private bool manteleria; //si o no
 		private int bebidas; //numero de bebidas
-		private float costoTotal ;
+		private float costoTotal;
 		private float seña; //numero de cuanto dejo de seña
 		private float saldo; // el resto de lo que falte pagar  
 		private ArrayList servicio = new ArrayList();
+		private Cliente cliente;
 		
 		//constructor
-		public Pedido(int numeroDePedido, int dni_Cliente, DateTime fechaDelEvento, float gastoDeComida, int mozos, bool manteleria, int bebidas, float costoTotal, float seña, float saldo, ArrayList servicio)
+		public Pedido(Cliente cliente, int numeroDePedido, DateTime fechaDelEvento, float gastoDeComida, int mozos, bool manteleria, int bebidas, float costoTotal, float seña)
 		{
 			this.numeroDePedido = numeroDePedido;
-			this.dni_Cliente = dni_Cliente;
 			this.fechaDelEvento = fechaDelEvento;
 			this.gastoDeComida = gastoDeComida;
 			this.mozos = mozos;
@@ -41,18 +40,20 @@ namespace Proyecto2023
 			this.bebidas = bebidas;
 			this.costoTotal = costoTotal;
 			this.seña = seña;
-			this.saldo = saldo;
-			this.servicio = servicio;
+			this.saldo = costoTotal - seña;
+			this.cliente = cliente;
+		}
+		//Metodos
+		public void AgregarServicio(Servicio sv)
+		{
+			servicio.Add(sv);
 		}
 		//propiedades 
 		public int NumeroDePedido {
 			get { return numeroDePedido; }
 			set { numeroDePedido = value; }
 		}
-		public int Dni_Cliente {
-			get { return dni_Cliente; }
-			set { dni_Cliente = value; }
-		}
+		
 		public DateTime FechaDelEvento {
 			get { return fechaDelEvento; }
 			set { fechaDelEvento = value; }
@@ -85,6 +86,19 @@ namespace Proyecto2023
 			get { return saldo; }
 			set { saldo = value; }
 		}
+		public Cliente CLIENTE{
+			get { return cliente; }
+			set { cliente = value; }
+		}
 		//metodos
+		public string RetornoServicio()
+		{
+			ArrayList listado = new ArrayList();
+			foreach(Servicio sv in servicio)
+			{
+				listado.Add(sv.NombreDelServicio);
+			}
+			return String.Join(" | ", listado);
+		}
 	}
 }

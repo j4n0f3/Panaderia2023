@@ -18,16 +18,9 @@ namespace Proyecto2023
 		
 			//atributos
 			private int id;
-			
-			private string nombreDelServicio ;	
-			
-			
+			private string nombreDelServicio;
 			private string tipoDeServicio;
-			
-			
 			private string descripcion ;
-			
-			
 			private float costo_Individual ;
 			
 			//constructor

@@ -19,7 +19,9 @@ namespace Proyecto2023
 		private static ArrayList pedidos = new ArrayList();
 		//------------------------------------------------------------------------
 		//atributos---------------------------------------------------------------
-		static int id_servicio;
+		private static int id_servicio = 0;
+		private static int num_pedido = 0;
+		private static bool habra_manteleria;
 		//------------------------------------------------------------------------
 		
 		//Main-------------------------------------------------------------------------
@@ -36,7 +38,7 @@ namespace Proyecto2023
 		private static void MenuPrincipal()
 		{
 			Console.Clear();
-			Console.WriteLine("1_Registrar Cliente: \n2_Quitar cliente \n3_Generar Pedido \n4_Eliminar Pedido \n5_Registrar Servicio \n6_Quitar Servicio \n7_Listado de Cliente \n8_Listado pedido \n9_Salir ");
+			Console.WriteLine("1_Registrar Cliente: \n2_Quitar cliente \n3_Generar Pedido \n4_Eliminar Pedido \n5_Registrar Servicio \n6_Quitar Servicio \n7_Listado de Cliente \n8_Listado pedido \n9_Listado Servicio \n10_Salir ");
 			int opcion = int.Parse(Console.ReadLine());
 			Ejecucion(opcion);
 		}
@@ -48,7 +50,7 @@ namespace Proyecto2023
 			Console.Clear();
 			switch(opcion)
 			{
-				case 1:
+				case 1://CREAR CLIENTE
 					Console.WriteLine ("ingrese el nombre del cliente");
 					string nombre= Console.ReadLine();
 					Console.WriteLine ("ingrese el apellido del cliente");
@@ -59,18 +61,56 @@ namespace Proyecto2023
 					string dirrection = Console.ReadLine();
 					Cliente thisCliente = new Cliente(dni, nombre, apellido, dirrection);
 					clientela.Add(thisCliente);
-					//En Caso de finalizar While true
-					//MenuPrincipal();
-					
 					break;
-				case 2:
+				case 2://ELIMINAR CLIENTE
 					Console.WriteLine ("ingrese el dni del cliente a eliminar: ");
 					int index= int.Parse(Console.ReadLine());
 					EliminarCliente(index);
 					break;
-				case 4:
+				case 3://CREAR PEDIDO
+					Console.WriteLine("Que Cliente registra este pedido?: ");
+					int client = int.Parse(Console.ReadLine()); // Esta variable es el dni de un cliente y se envia como identificador del cliente a elejir
+					Console.WriteLine("Que Fecha se realizara este evento?: ");
+					DateTime fecha = DateTime.Parse(Console.ReadLine());
+					Console.WriteLine("Cuantos mozos se requeriran?: ");
+					int mozo = int.Parse(Console.ReadLine());
+					Console.WriteLine("Cuanto gastara en comida?: ");
+					float gastoComida = float.Parse(Console.ReadLine());
+					Console.WriteLine("El Evento contara con manteleria?: ");
+					string condicion = Console.ReadLine();
+					if(condicion == "si")
+					{
+						habra_manteleria = true;
+					}
+					else
+					{
+						if(condicion == "no")
+						{
+							habra_manteleria = false;
+						}
+						else
+						{
+							Console.WriteLine("Error volver a intentar");
+							MenuPrincipal();
+						}
+					}
+					Console.WriteLine("Cuantas bebidas necesitara este Evento?: ");
+					int bebida = int.Parse(Console.ReadLine());
+					Console.WriteLine("Cuanto costar en total el evento?: ");
+					float costoTotal = float.Parse(Console.ReadLine());
+					Console.WriteLine("Con cuanto se Seño este Evento?: ");
+					float seña = float.Parse(Console.ReadLine());
+					
+					Pedido ticket = new Pedido(SelectCliente(client), num_pedido, fecha, gastoComida, mozo, habra_manteleria, bebida, costoTotal, seña);
+					num_pedido++;
+					pedidos.Add(ticket);
 					break;
-				case 5:
+				case 4://ELIMINAR PEDIDO
+					Console.WriteLine ("ingrese el numero de pedido a eliminar: ");
+					int numPedido= int.Parse(Console.ReadLine());
+					EliminarPedido(num_pedido);
+					break;
+				case 5://SERVICIO
 					id_servicio += 1;
 					Console.WriteLine ("ingrese el nombre del servicio: ");
 					string nomS= Console.ReadLine();
@@ -83,14 +123,27 @@ namespace Proyecto2023
 					Servicio thisService = new Servicio(id_servicio, nomS, tipo, descrip, costo);
 					servicios.Add(thisService);
 					break;
-				case 6:
+				case 6://QUITAR SERVICIO
+					Console.WriteLine ("ingrese el id del servicio a eliminar: ");
+					int ident= int.Parse(Console.ReadLine());
+					EliminarServicio(ident);
 					break;
-				case 7:
+				case 7://LISTADO CLIENTE
+					ListadoCliente();
+					Console.ReadKey();
 					break;
-				case 8:
+					break;
+				case 8://LISTADO PEDIDO
+					ListadoPedido();
+					Console.ReadKey();
+					break;
+				case 9://LISTADO SERVICIO
 					ListadoServicio();
+					Console.ReadKey();
 					break;
-				case 9:
+				default:
+					Console.WriteLine("Error valor incorrecto");
+					Console.ReadKey();
 					break;
 			}
 		}
@@ -116,16 +169,65 @@ namespace Proyecto2023
 				{
 					clientela.Remove(sv);
 				}
-				
 			}
 		}
+		private static void EliminarPedido(int identificador)
+		{
+			foreach(Pedido PD in pedidos)
+			{
+				if(PD.NumeroDePedido == identificador)
+				{
+					clientela.Remove(PD);
+				}
+			}
+		}
+		//-------------------------------------------------------------------------------------------
+		
+		//Listado----------------------------------------------------------------------------------
 		private static void ListadoServicio()
 		{
 			foreach(Servicio sv in servicios)
 			{
-				Console.WriteLine("ID: {0} \nNOMBRE: {1} \nTIPO{2} \nDESCRIPCION: {3} \nCOSTO: {4}", sv.ID, sv.NombreDelServicio, sv.TipoDeServicio, sv.Descripcion, sv.Costo_Individual);
+				Console.WriteLine("ID: {0}\nNOMBRE: {1}\nTIPO: {2}\nDESCRIPCION: {3}\nCOSTO: {4}", sv.ID, sv.NombreDelServicio, sv.TipoDeServicio, sv.Descripcion, sv.Costo_Individual);
+			}
+		}
+		private static void ListadoCliente()
+		{
+			foreach(Cliente cl in clientela)
+			{
+				Console.WriteLine("DNI: {0}\nNOMBRE: {1}\nAPELLIDO: {2}\nDIRECCION: {3} \n", cl.Dni, cl.Nombre, cl.Apellido, cl.Dirreccion);
+			}
+		}
+		private static void ListadoPedido()
+		{
+			string manteleria_condicion;
+			foreach(Pedido pd in pedidos)
+			{
+				if(pd.Manteleria == true)
+				{
+					manteleria_condicion = "si";
+				}
+				else
+				{
+					manteleria_condicion = "no";
+				}
+				Console.WriteLine("Numero de pedido: {0} \nDni del cliente: {1}\nFecha del evento: {2}\nServicios contratados: {3}\nContara con manteleria? {4}\nCantidad de mozos empleados: {5}\nCantidad de bebidas en stock: {6}\nValor de la seña: {7}\nCosto Total: {8}\nRestante a pagar: {9}\n", pd.NumeroDePedido, pd.CLIENTE.Dni, pd.FechaDelEvento, pd.RetornoServicio(), manteleria_condicion, pd.Mozos, pd.Bebidas, pd.Seña, pd.CostoTotal, pd.Saldo);
 			}
 		}
 		//-------------------------------------------------------------------------------------------
+		
+		//Retorno-------------------------------------------------------------------------------------
+		private static Cliente SelectCliente(int identificador)
+		{
+			foreach(Cliente cl in clientela)
+			{
+				if(cl.Dni == identificador)
+				{
+					return cl;
+				}
+			}
+			Cliente default_cliente = new Cliente(0, "null", "null", "null");
+			return default_cliente;
+		}
 	}
 }
