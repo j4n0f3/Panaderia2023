@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections;
 
 namespace Proyecto2023
 {
@@ -18,20 +19,30 @@ namespace Proyecto2023
 		//atributos
 		private int numeroDePedido ;
 		private int dni_Cliente;
-		private int fechaDelEvento; //fecha en numeros y todo junto
-		private int gastoDeComida; //numero del gasto
+		private DateTime fechaDelEvento; //fecha en numeros y todo junto
+		private float gastoDeComida; //numero del gasto
 		private int mozos;  //cuantos mozos
-		private string manteleria; //si o no
+		private bool manteleria; //si o no
 		private int bebidas; //numero de bebidas
-		private int costoTotal ;
-		private int seña; //numero de cuanto dejo de seña
-		private int saldo; // el resto de lo que falte pagar  
-		
+		private float costoTotal ;
+		private float seña; //numero de cuanto dejo de seña
+		private float saldo; // el resto de lo que falte pagar  
+		private ArrayList servicio = new ArrayList();
 		
 		//constructor
-		public Pedido()
+		public Pedido(int numeroDePedido, int dni_Cliente, DateTime fechaDelEvento, float gastoDeComida, int mozos, bool manteleria, int bebidas, float costoTotal, float seña, float saldo, ArrayList servicio)
 		{
-			
+			this.numeroDePedido = numeroDePedido;
+			this.dni_Cliente = dni_Cliente;
+			this.fechaDelEvento = fechaDelEvento;
+			this.gastoDeComida = gastoDeComida;
+			this.mozos = mozos;
+			this.manteleria = manteleria;
+			this.bebidas = bebidas;
+			this.costoTotal = costoTotal;
+			this.seña = seña;
+			this.saldo = saldo;
+			this.servicio = servicio;
 		}
 		//propiedades 
 		public int NumeroDePedido {
@@ -42,11 +53,11 @@ namespace Proyecto2023
 			get { return dni_Cliente; }
 			set { dni_Cliente = value; }
 		}
-		public int FechaDelEvento {
+		public DateTime FechaDelEvento {
 			get { return fechaDelEvento; }
 			set { fechaDelEvento = value; }
 		}
-		public int GastoDeComida {
+		public float GastoDeComida {
 			get { return gastoDeComida; }
 			set { gastoDeComida = value; }
 		}
@@ -54,7 +65,7 @@ namespace Proyecto2023
 			get { return mozos; }
 			set { mozos = value; }
 		}
-		public string Manteleria {
+		public bool Manteleria {
 			get { return manteleria; }
 			set { manteleria = value; }
 		}
@@ -62,15 +73,15 @@ namespace Proyecto2023
 			get { return bebidas; }
 			set { bebidas = value; }
 		}
-		public int CostoTotal {
+		public float CostoTotal {
 			get { return costoTotal; }
 			set { costoTotal = value; }
 		}
-		public int Seña {
+		public float Seña {
 			get { return seña; }
 			set { seña = value; }
 		}
-		public int Saldo {
+		public float Saldo {
 			get { return saldo; }
 			set { saldo = value; }
 		}

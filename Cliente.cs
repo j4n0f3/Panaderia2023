@@ -25,7 +25,7 @@ namespace Proyecto2023
 		private string dirreccion;
 		
 		//constructor
-		public Cliente(int dni, string nombre, string apellido, string direccion)
+		public Cliente(int dni, string nombre, string apellido, string dirreccion)
 		{
 			this.dni = dni;
 			this.nombre = nombre;
