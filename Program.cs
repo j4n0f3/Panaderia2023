@@ -8,15 +8,16 @@
  */
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Proyecto2023
 {
 	class Program
 	{
 		//Listados Importantes-------------------------------------------------
-		private static ArrayList clientela = new ArrayList();
-		private static ArrayList servicios = new ArrayList();
-		private static ArrayList pedidos = new ArrayList();
+		private static List<Cliente> clientela = new List<Cliente>();
+		private static List<Servicio> servicios = new List<Servicio>();
+		private static List<Pedido> pedidos = new List<Pedido>();
 		//------------------------------------------------------------------------
 		//atributos---------------------------------------------------------------
 		private static int id_servicio = 0;
@@ -38,6 +39,9 @@ namespace Proyecto2023
 		private static void MenuPrincipal()
 		{
 			Console.Clear();
+			/*
+			  * AGREGAR SERIE DE INSTRUCCIONES PARA EL CORRECTO MANEJO DE LA APLICACION
+			  * */
 			Console.WriteLine("1_Registrar Cliente: \n2_Quitar cliente \n3_Generar Pedido \n4_Eliminar Pedido \n5_Registrar Servicio \n6_Quitar Servicio \n7_Listado de Cliente \n8_Listado pedido \n9_Listado Servicio \n10_Salir ");
 			int opcion = int.Parse(Console.ReadLine());
 			Ejecucion(opcion);
@@ -65,7 +69,7 @@ namespace Proyecto2023
 				case 2://ELIMINAR CLIENTE
 					Console.WriteLine ("ingrese el dni del cliente a eliminar: ");
 					int index= int.Parse(Console.ReadLine());
-					EliminarCliente(index);
+					clientela.Remove(SelectCliente(index));
 					break;
 				case 3://CREAR PEDIDO
 					Console.WriteLine("Que Cliente registra este pedido?: ");
@@ -105,10 +109,10 @@ namespace Proyecto2023
 					num_pedido++;
 					pedidos.Add(ticket);
 					break;
-				case 4://ELIMINAR PEDIDO
+				case 4://QUITAR PEDIDO
 					Console.WriteLine ("ingrese el numero de pedido a eliminar: ");
 					int numPedido= int.Parse(Console.ReadLine());
-					EliminarPedido(num_pedido);
+					pedidos.Remove(SelectPedido(num_pedido));
 					break;
 				case 5://SERVICIO
 					id_servicio += 1;
@@ -126,12 +130,11 @@ namespace Proyecto2023
 				case 6://QUITAR SERVICIO
 					Console.WriteLine ("ingrese el id del servicio a eliminar: ");
 					int ident= int.Parse(Console.ReadLine());
-					EliminarServicio(ident);
+					servicios.Remove(SelectServicio(ident));
 					break;
 				case 7://LISTADO CLIENTE
 					ListadoCliente();
 					Console.ReadKey();
-					break;
 					break;
 				case 8://LISTADO PEDIDO
 					ListadoPedido();
@@ -150,37 +153,8 @@ namespace Proyecto2023
 		//----------------------------------------------------------------------------------------
 		
 		//Metodos para modificacion---------------------------------------------------------------
-		private static void EliminarCliente(int identificador)
-		{
-			foreach(Cliente cl in clientela)
-			{
-				if(cl.Dni == identificador)
-				{
-					clientela.Remove(cl);
-				}
-				
-			}
-		}
-		private static void EliminarServicio(int identificador)
-		{
-			foreach(Servicio sv in servicios)
-			{
-				if(sv.ID == identificador)
-				{
-					clientela.Remove(sv);
-				}
-			}
-		}
-		private static void EliminarPedido(int identificador)
-		{
-			foreach(Pedido PD in pedidos)
-			{
-				if(PD.NumeroDePedido == identificador)
-				{
-					clientela.Remove(PD);
-				}
-			}
-		}
+		
+		
 		//-------------------------------------------------------------------------------------------
 		
 		//Listado----------------------------------------------------------------------------------
@@ -228,6 +202,34 @@ namespace Proyecto2023
 			}
 			Cliente default_cliente = new Cliente(0, "null", "null", "null");
 			return default_cliente;
+		}
+		
+		private static Servicio SelectServicio(int identificador)
+		{
+			foreach(Servicio sv in servicios)
+			{
+				if(sv.ID == identificador)
+				{
+					return sv;
+				}
+			}
+			Servicio default_servicio = new Servicio(0, "null", "null", "null", 0.0f);
+			return default_servicio;
+		}
+		
+		private static Pedido SelectPedido(int identificador)
+		{
+			foreach(Pedido PD in pedidos)
+			{
+				if(PD.NumeroDePedido == identificador)
+				{
+					return PD;
+				}
+			}
+			Cliente default_cliente = new Cliente(0, "null", "null", "null");
+			DateTime default_time = new DateTime(00, 00, 0000);
+			Pedido default_pedido = new Pedido(default_cliente, 0, default_time, 0, 0, false, 0, 0.0f, 0.0f);
+			return default_pedido;
 		}
 	}
 }
