@@ -23,12 +23,13 @@ namespace Proyecto2023
 		private static int id_servicio = 0;
 		private static int num_pedido = 0;
 		private static bool habra_manteleria;
+		private static bool condicion = true;
 		//------------------------------------------------------------------------
 		
 		//Main-------------------------------------------------------------------------
 		public static void Main(string[] args)
 		{
-			while(true)
+			while(condicion)
 			{
 				MenuPrincipal();
 			}
@@ -44,7 +45,14 @@ namespace Proyecto2023
 			  * */
 			Console.WriteLine("1_Registrar Cliente: \n2_Quitar cliente \n3_Generar Pedido \n4_Eliminar Pedido \n5_Registrar Servicio \n6_Quitar Servicio \n7_Listado de Cliente \n8_Listado pedido \n9_Listado Servicio \n10_Salir ");
 			int opcion = int.Parse(Console.ReadLine());
-			Ejecucion(opcion);
+			if(opcion == 10)
+			{
+				condicion = false;
+			}
+			else
+			{
+				Ejecucion(opcion);
+			}
 		}
 		//------------------------------------------------------------------------------
 		
@@ -72,8 +80,19 @@ namespace Proyecto2023
 					clientela.Remove(SelectCliente(index));
 					break;
 				case 3://CREAR PEDIDO
+					ArrayList thisServicios = new ArrayList();
 					Console.WriteLine("Que Cliente registra este pedido?: ");
 					int client = int.Parse(Console.ReadLine()); // Esta variable es el dni de un cliente y se envia como identificador del cliente a elejir
+					ListadoServicio();
+					Console.WriteLine("cuantos servicios incluira?: ");
+					int serv_cant = int.Parse(Console.ReadLine());
+					for(int i = 0; i < serv_cant; i++)
+					{
+						Console.WriteLine("Que servicio incluira?(ID): ");
+						int serv_id = int.Parse(Console.ReadLine());
+						Servicio retornarSERV = SelectServicio(serv_id);
+						thisServicios.Add(retornarSERV);
+					}
 					Console.WriteLine("Que Fecha se realizara este evento?: ");
 					DateTime fecha = DateTime.Parse(Console.ReadLine());
 					Console.WriteLine("Cuantos mozos se requeriran?: ");
@@ -104,8 +123,7 @@ namespace Proyecto2023
 					float costoTotal = float.Parse(Console.ReadLine());
 					Console.WriteLine("Con cuanto se Seño este Evento?: ");
 					float seña = float.Parse(Console.ReadLine());
-					
-					Pedido ticket = new Pedido(SelectCliente(client), num_pedido, fecha, gastoComida, mozo, habra_manteleria, bebida, costoTotal, seña);
+					Pedido ticket = new Pedido(SelectCliente(client), thisServicios, num_pedido, fecha, gastoComida, mozo, habra_manteleria, bebida, costoTotal, seña);
 					num_pedido++;
 					pedidos.Add(ticket);
 					break;
@@ -228,7 +246,7 @@ namespace Proyecto2023
 			}
 			Cliente default_cliente = new Cliente(0, "null", "null", "null");
 			DateTime default_time = new DateTime(00, 00, 0000);
-			Pedido default_pedido = new Pedido(default_cliente, 0, default_time, 0, 0, false, 0, 0.0f, 0.0f);
+			Pedido default_pedido = new Pedido(default_cliente, null, 0, default_time, 0, 0, false, 0, 0.0f, 0.0f);
 			return default_pedido;
 		}
 	}

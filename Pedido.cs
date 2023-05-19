@@ -16,6 +16,8 @@ namespace Proyecto2023
 	/// </summary>
 	public class Pedido
 	{	
+		//Atributo de metodo
+		private static String devuelto;
 		//atributos
 		private int numeroDePedido ;
 		private DateTime fechaDelEvento; //fecha en numeros y todo junto
@@ -30,7 +32,7 @@ namespace Proyecto2023
 		private Cliente cliente;
 		
 		//constructor
-		public Pedido(Cliente cliente, int numeroDePedido, DateTime fechaDelEvento, float gastoDeComida, int mozos, bool manteleria, int bebidas, float costoTotal, float seña)
+		public Pedido(Cliente cliente, ArrayList newServicio, int numeroDePedido, DateTime fechaDelEvento, float gastoDeComida, int mozos, bool manteleria, int bebidas, float costoTotal, float seña)
 		{
 			this.numeroDePedido = numeroDePedido;
 			this.fechaDelEvento = fechaDelEvento;
@@ -42,11 +44,7 @@ namespace Proyecto2023
 			this.seña = seña;
 			this.saldo = costoTotal - seña;
 			this.cliente = cliente;
-		}
-		//Metodos
-		public void AgregarServicio(Servicio sv)
-		{
-			servicio.Add(sv);
+			this.servicio = newServicio;
 		}
 		//propiedades 
 		public int NumeroDePedido {
@@ -94,11 +92,17 @@ namespace Proyecto2023
 		public string RetornoServicio()
 		{
 			ArrayList listado = new ArrayList();
+			
 			foreach(Servicio sv in servicio)
 			{
 				listado.Add(sv.NombreDelServicio);
 			}
-			return String.Join(" | ", listado);
+			foreach(String nombreSERV in listado)
+			{
+				devuelto = devuelto + ", " + nombreSERV;
+			}
+			return devuelto;
 		}
+		
 	}
 }
