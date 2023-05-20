@@ -25,3 +25,9 @@ C:\Users\Jano\Desktop\Patas\git\Panaderia2023\bin\Debug\Proyecto2023.pdb
 C:\Users\Jano\Desktop\Patas\git\Panaderia2023\obj\Debug\Proyecto2023.csprojResolveAssemblyReference.cache
 C:\Users\Jano\Desktop\Patas\git\Panaderia2023\obj\Debug\Proyecto2023.exe
 C:\Users\Jano\Desktop\Patas\git\Panaderia2023\obj\Debug\Proyecto2023.pdb
+C:\Users\Mati\Desktop\Panaderia2023\bin\Debug\Proyecto2023.exe.config
+C:\Users\Mati\Desktop\Panaderia2023\bin\Debug\Proyecto2023.exe
+C:\Users\Mati\Desktop\Panaderia2023\bin\Debug\Proyecto2023.pdb
+C:\Users\Mati\Desktop\Panaderia2023\obj\Debug\Proyecto2023.csprojResolveAssemblyReference.cache
+C:\Users\Mati\Desktop\Panaderia2023\obj\Debug\Proyecto2023.exe
+C:\Users\Mati\Desktop\Panaderia2023\obj\Debug\Proyecto2023.pdb

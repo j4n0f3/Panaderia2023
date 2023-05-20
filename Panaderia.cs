@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Mati
- * Date: 9/5/2023
- * Time: 19:54
+ * Date: 20/5/2023
+ * Time: 20:06
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -12,9 +12,12 @@ using System.Collections.Generic;
 
 namespace Proyecto2023
 {
-	class Program
+	/// <summary>
+	/// Description of Panaderia.
+	/// </summary>
+	public class Panaderia
 	{
-		/*//Listados Importantes-------------------------------------------------
+		//Listados Importantes-------------------------------------------------
 		private static List<Cliente> clientela = new List<Cliente>();
 		private static List<Servicio> servicios = new List<Servicio>();
 		private static List<Pedido> pedidos = new List<Pedido>();
@@ -24,24 +27,20 @@ namespace Proyecto2023
 		private static int num_pedido = 0;
 		private static bool habra_manteleria;
 		private static bool condicion = true;
-		//------------------------------------------------------------------------
 		
-		//Main-------------------------------------------------------------------------*/
-		public static void Main(string[] args)
-		{		
-			Panaderia pan = new Panaderia();
-			
-			Console.ReadKey(true);
+		public Panaderia()
+		{	
+			while(condicion)
+			{
+				MenuPrincipal();
+			}
 		}
-		//------------------------------------------------------------------------------
-		
-		//Menu inicial-----------------------------------------------------------------
-		/*private static void MenuPrincipal()
+		private static void MenuPrincipal()
 		{
 			Console.Clear();
 			/*
 			  * AGREGAR SERIE DE INSTRUCCIONES PARA EL CORRECTO MANEJO DE LA APLICACION
-			  *
+			  * */
 			 try {
 			 	
 			 	Console.WriteLine("1_Registrar Cliente: \n2_Quitar cliente \n3_Generar Pedido \n4_Eliminar Pedido \n5_Registrar Servicio \n6_Quitar Servicio \n7_Listado de Cliente \n8_Listado pedido \n9_Listado Servicio \n10_Salir ");
@@ -61,9 +60,6 @@ namespace Proyecto2023
 			 	
 			 	Console.WriteLine("Tipo de dato invalido.");
 			 	Console.ReadKey(true);
-			 	throw;
-			 }
-			 finally {
 			 	MenuPrincipal();
 			 }
 			
@@ -85,7 +81,7 @@ namespace Proyecto2023
 					string nombre= Console.ReadLine();
 					Console.WriteLine ("ingrese el apellido del cliente");
 					string apellido=Console.ReadLine();
-					Console.WriteLine ("ingrese el dni del cliente");
+					Console.WriteLine ("ingrese el dni del cliente (en numeros)");
 					int dni= int.Parse(Console.ReadLine());
 					Console.WriteLine ("ingrese la dirrecion del cliente");
 					string dirrection = Console.ReadLine();
@@ -93,36 +89,31 @@ namespace Proyecto2023
 					clientela.Add(thisCliente);
 					break;
 				case 2://ELIMINAR CLIENTE
-					Console.WriteLine ("ingrese el dni del cliente a eliminar: ");
+					Console.WriteLine ("ingrese el dni del cliente a eliminar( en numeros): ");
 					int index= int.Parse(Console.ReadLine());
-					if (index>clientela.Count) {
-						Console.WriteLine("error no existe el Cliente");
-						Console.ReadKey(true);
-						MenuPrincipal();
-					}
 					clientela.Remove(SelectCliente(index));
 					break;
 				case 3://CREAR PEDIDO
 					ArrayList thisServicios = new ArrayList();
-					Console.WriteLine("Que Cliente registra este pedido?: ");
+					Console.WriteLine("Que Cliente registra este pedido?( Ingresar el dni del cliente ): ");
 					int client = int.Parse(Console.ReadLine()); // Esta variable es el dni de un cliente y se envia como identificador del cliente a elejir
 					ListadoServicio();
-					Console.WriteLine("cuantos servicios incluira?: ");
+					Console.WriteLine("cuantos servicios incluira?  (ingrese el numero de servicios): ");
 					int serv_cant = int.Parse(Console.ReadLine());
 					for(int i = 0; i < serv_cant; i++)
 					{
-						Console.WriteLine("Que servicio incluira?(ID): ");
+						Console.WriteLine("Que servicio incluira?(ingresar el ID): ");
 						int serv_id = int.Parse(Console.ReadLine());
 						Servicio retornarSERV = SelectServicio(serv_id);
 						thisServicios.Add(retornarSERV);
 					}
-					Console.WriteLine("Que Fecha se realizara este evento?: ");
+					Console.WriteLine("Que Fecha se realizara este evento? ( ingresar la fecha en formato **/**/****): ");
 					DateTime fecha = DateTime.Parse(Console.ReadLine());
-					Console.WriteLine("Cuantos mozos se requeriran?: ");
+					Console.WriteLine("Cuantos mozos se requeriran?: (ingresar el numero de mozos) ");
 					int mozo = int.Parse(Console.ReadLine());
-					Console.WriteLine("Cuanto gastara en comida?: ");
+					Console.WriteLine("Cuanto gastara en comida?:(ingresar el monto en numeros) ");
 					float gastoComida = float.Parse(Console.ReadLine());
-					Console.WriteLine("El Evento contara con manteleria?: ");
+					Console.WriteLine("El Evento contara con manteleria?: (ingresar si o no)  ");
 					string condicion = Console.ReadLine();
 					if(condicion == "si")
 					{
@@ -140,11 +131,11 @@ namespace Proyecto2023
 							MenuPrincipal();
 						}
 					}
-					Console.WriteLine("Cuantas bebidas necesitara este Evento?: ");
+					Console.WriteLine("Cuantas bebidas necesitara este Evento?: (ingresar el numero de bebidas) ");
 					int bebida = int.Parse(Console.ReadLine());
-					Console.WriteLine("Cuanto costar en total el evento?: ");
+					Console.WriteLine("Cuanto costar en total el evento?: (ingresar el monto en numeros)");
 					float costoTotal = float.Parse(Console.ReadLine());
-					Console.WriteLine("Con cuanto se Seño este Evento?: ");
+					Console.WriteLine("Con cuanto se Seño este Evento?:(ingresar el monto en numeros) ");
 					float seña = float.Parse(Console.ReadLine());
 					Pedido ticket = new Pedido(SelectCliente(client), thisServicios, num_pedido, fecha, gastoComida, mozo, habra_manteleria, bebida, costoTotal, seña);
 					num_pedido++;
@@ -168,13 +159,13 @@ namespace Proyecto2023
 					string tipo= Console.ReadLine();
 					Console.WriteLine ("ingrese una descripcion del servicio: ");
 					string descrip= Console.ReadLine();
-					Console.WriteLine ("ingrese el costo del servicio: ");
+					Console.WriteLine ("ingrese el costo del servicio:(en numeros) ");
 					float costo= float.Parse(Console.ReadLine());
 					Servicio thisService = new Servicio(id_servicio, nomS, tipo, descrip, costo);
 					servicios.Add(thisService);
 					break;
 				case 6://QUITAR SERVICIO
-					Console.WriteLine ("ingrese el id del servicio a eliminar: ");
+					Console.WriteLine ("ingrese el id del servicio a eliminar:(ingresar el dni de la persona en numeros) ");
 					int ident= int.Parse(Console.ReadLine());
 					if (ident>servicios.Count) {
 						Console.WriteLine("error no existe el servicio");
@@ -288,6 +279,6 @@ namespace Proyecto2023
 			DateTime default_time = new DateTime(00, 00, 0000);
 			Pedido default_pedido = new Pedido(default_cliente, null, 0, default_time, 0, 0, false, 0, 0.0f, 0.0f);
 			return default_pedido;
-		}*/
+		}
 	}
 	}
