@@ -16,14 +16,14 @@ namespace Proyecto2023
 	public class Servicio
 	{
 		
-			//atributos
-			private int id;
-			private string nombreDelServicio;
-			private string tipoDeServicio;
-			private string descripcion ;
-			private float costo_Individual ;
+		//atributos
+		private int id;
+		private string nombreDelServicio;
+		private string tipoDeServicio;
+		private string descripcion ;
+		private float costo_Individual ;
 			
-			//constructor
+		//constructor
 		public Servicio(int id, string nombreServicio, string tipoServcio, string descripcion, float costo_individual)
 		{
 			this.id = id;
@@ -54,6 +54,5 @@ namespace Proyecto2023
 				get { return costo_Individual; }
 				set { costo_Individual = value; }
 			}
-		//metodos
 	}
 }
