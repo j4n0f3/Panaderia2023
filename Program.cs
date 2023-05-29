@@ -14,11 +14,17 @@ namespace Proyecto2023
 {
 	class Program
 	{
+		private static List<Panaderia> empresas = new List<Panaderia>();
 		public static void Main(string[] args)
-		{		
+		{	
+			
 			Panaderia pan = new Panaderia();
+			empresas.Add(pan);
+			
 			Console.ReadKey(true);
 		}
 		
 	}
+	
+	
 }

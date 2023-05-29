@@ -18,6 +18,9 @@ namespace Proyecto2023
 	/// </summary>
 	public class Panaderia
 	{
+			//Atributos propios de una panaderia
+			private int id;
+			private string nombre_panaderia;
 			//Listados Importantes-------------------------------------------------
 			private static List<Cliente> clientela = new List<Cliente>();
 			private static List<Servicio> servicios = new List<Servicio>();
@@ -67,53 +70,7 @@ namespace Proyecto2023
                         		/**      /**     /**/**    //***/**     /**/*******  /********/**   //**/**/**     /**  /******/ **** /******/ ****
                         		//       //      // //      /// //      // ///////   //////// //     // // //      //   //////  ////  //////  ////
 
-
-                                                                                                                        ..,*//////////////////***,,,,..                                            
-                                                                                                              ..,********/*******************///***//*/********,,***,.                                  
-                                                                                                      ,**////////////(/*/////(/////*///***////////***,,************,,*///*,.                            
-                                                                                               .,///((((((////((////**//*/////((//(////////****////////(/*,,***,***,,*,,*//****,.                       
-                                                                                           ,(/**/(((((////*///*/(//,*/***//***/*****///////////////****/*////**,,,,,********/**//(/,                    
-                                                                                      .,*//(///*//*//*,*****/*/*,,**,***,,,**/**,*****,,,,**//********//***//****/***,,**,*/***//***(*                  
-                                                                                 ,*//*//*/**/******/**/**,,,,,**,,,,*/(/,,,,****,,*//**,,**,,,*********************/*,,,,,*,,****///**/*                
-                                                                            .*(//////////////////////***////***,,,,,,,,**,,,,,,,,...,,,**,,*//**,**//******,*********/*,,,,,****/*********              
-                                                                       .,*/***//****///**/(///*//////////////*/*///*,***,,,,,,...,,.,,,,,,,,,,************//********/*****,,,,,************,            
-                                                                  ,***//(///(///////////////(((//////////////*****//////////**,,,,.,,..,,.,,,,,,,**,*******//************/****,,,,*********/*,          
-                                                             .,**//////////////////((///(//(///((/((*//(/*************/*****/////*,,,,,,,......,,,,,,*********/*****************,,,,,*,*****/**.        
-                                                         ,*//////(/((((///////(/(/****//*/**///*//(((((//////**,***,*,***,**************,**,..,,,..,,,,,,,*,*****/*****************,,,**********.       
-                                                   .*//(///(((/*/((///*////**/*//((##(///*////**********///*****/****,,,***,*/*,*,,*****,****/*,....,,.,,,,,,,,,*********************,,**********       
-                                              ,((//(//*/(/**////*/////***,,****,,**,,,*/*,*,,*/***//**,************,*,*****,,,,******,,,,,,*****//*,.....,,,,,,,*,,*,,,,***,**********,*****,,***.      
-                                         .*(((((////////*,*/****/****,,,*,,,,,,,,,,**********/**//***,****,,*,,*****,*,,,,,,,,,,,,**,,,,,,,,,************,....,,,,****,,,******************,***,*.      
-                                       ,/((((//////**************,,**,,,,,,,,,*,,,,,,**,,****,,*/*,,****,***,***,,****,*,,,,,,,,******,,,,,*****************,,,,,,,,**,***,,,*******,,**,,,*****,.      
-                                   ,/(((((//**//******/***************,,,,,,,,,,*,,,,,,,,....,,.,*******,,,,,**,,*******,*,**,,,****,,**,,****,,,,,,**,,,,,,*,,...,,,,,,*,**,**,,,,*******,,,**,.       
-                                 */((//*//*///((((((((/////(/***/**//*******,,,,,,,,,,,,,,...........,***,,,,,***,******,,,,**,,****,,,,*,,,*,,,,,*,,,,**,,,,,**...,,,,,,,,,,****,,***,,,,,***,.        
-                               ,(//////////////////////////////*****/******/**//****,,,...,,,,...,......,,,,,,,,*****,,***,,,***,***,*,,,,,,,,,,,,,,,,,,*,,,,,,,,,,,,,,,,,,,,,**,,,*****,,,,,,          
-                             ,//*/(((///*////(/////////////*///*****/**,,*****,,*,,,*****/*,,*,,,,,,,,......,,,**,,,,,**,,,,,,,,,*,,**,,,,,,,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.           
-                           ,///////((/////*//**/**/***/////*****///*********,,,,,,***,,,,,*,**,*******,,,,,.....,,**,.,*/*,,.,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.              
-                        .***//////(///***//*/*/**//////////(/*******,***,**,,,,,*,,,,,,,,,,,,,,,,,,*,,,,,,,,,,,,,...,,,*,,,,,..,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                 
-                     .,*/*//////////////////*//////////*////**//******,,,,*,,,,,,,,,,,,,,,,,,,,,*,,,,,,,,,,,,,**,,,*****,,..,,,,..,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                   
-                   ,*/////(/(//((/(((((////(///////////////*//******,,,,,,,,*,,,,,,,,,,,,,,*,,,,,,,,,,,,,,,,,,,,,,,**,,*,,,,,.,,,,,...,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                      
-                 ,////((((((((((((/(((////////**//**////*/**********,,,,,,,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,..,....,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,**,.                         
-               ,(((((((((((((((((((((///((***/((((///****/************,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,......,,,,,,,,,,,,,,,,,,,,,,,,,,,**,.                             
-             *//(((((((((/////(///*/(///*/////***//***///*****,,,,,,,,,*,,,,,,,,,,,,,,,,,,,,,,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,...,,,,,,,,,,,,,,,,,,,,,,,.,,**.                                  
-           ,(/((#(/((((((/////////******//**/*////**,,*//***//*/,,,,,,,,,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.,**.                                      
-         ./(//((/(//*//****,,,,*,,*//,,/,,**,*****/*,,,,*//*,,,*,//***,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.,,,,,,,,,,,,***.                                          
-        .(((((/*///***/*//*//*,,,,**//,,,,,,*,,,,,,,,*,,.,,,,*/*,********,**,,,,,,,,,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,**.                                              
-       ,((((((/*///////////****///**,*/***,,,,,,,,,,,,,*,,,,,,,,,,,*,,*******,,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                                                  
-      ./((((((((((######(//(//////**/***/***,,,,,,,,,,,,,...,,,,,,,,,,,,,,,*****,,,,,,,,,,,,,,,,,,,,,,,*,,,,,,,,,,,,,,,**,,,,,,,,,,,,,,,,,,,,,,,,.                                                      
-      *(((/(##((#((##((((#(**(((((((////*/**/**,*/****,,.,......,,...,,,,,,,,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.,,**,.                                                         
-      */(((##(((((((((((((((((((((((/(((/(///((///*//***,,,,,,,,*,....,....,..,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.,***,.                                                             
-      ,/((((#((((((((((((((((((((//((((((((((((((/(//***********,*,,,,,,,,,,,,......,,,,,,,,,,,,,,,,,,,,,,*,,,,,,,,,,,,,,,,,,,,..,**,.                                                                  
-      .*/(((((((#((((((((((((((((((//((((//////(///**////*******/******/*****,,,,,..,,,,,,,,,,,,,,******,,,,,,,,,,,,,,,,,,..,***.                                                                       
-       .////(((#(((((((((/((////(///(/////////*****/*************************,,,,,,,,,,,,,,,,,,,,,,,,****,,,,,,,,,,,...,*/*.                                                                            
-        .,*///((((((((((//////////////////////**//************************,,*,,,,,,,,,,,,,,,,,,,****,***,,,,,,,.,,*//*.                                                                                 
-          ,**///*/(//(((/((///(//////**////**//*************************,,**,,,,,,,,,,,,,,,,,,,,*,,,,,,,,,,,*/(/,.                                                                                      
-           .,***//////////////**///*//**/**//***********,,*****,********,,,*****,,,,,**,,,,,,,,,,,,,*((((/*.                                                                                            
-             .,**///////////////*//***/**/**********,,**,,****,,*************,**,,,,,,,,,,..,*/(((/,..                                                                                                  
-               .,*******////*/*///**//**************,*,,,,,,,,,,,,,,,,****,,,,,,,,,,,,*/(((/,.                                                                                                          
-                 ,************/**************************,,,,,,,,,,,*,,,,,,,,*/((##(/*..                                                                                                                
-                   .,/(#((/**********************,*,,,,,,,,,,,,,,,.,,,/((##(/*,.                                                                                                                        
-                       .*(%%%&&%(/**,**,*,,,,,,,,,,,,,,,,,,,,*/(###/*,.                                                                                                                                 
-                             .,*(##%%%&&&&&&&&&&%%%%%##(/*,,..                                                                                                                                          
+                                                                                                                                         
 
 ";
 		        int consoleBufferWidth = Math.Max(Console.WindowWidth, title.Length);
@@ -134,11 +91,11 @@ namespace Proyecto2023
 				 try {
 				 	Console.WriteLine("\n\t ******                                                  **                         **\n\t/*////**                                                /**                        /**\n\t/*   /**  **   **  *****  *******   ******    ******   ******  ******   ******     /**  *****   ******\n\t/******  /**  /** **///**//**///** //////**  **////   ///**/  //////** //**//*  ****** **///** **////\n\t/*//// **/**  /**/******* /**  /**  ******* //*****     /**    *******  /** /  **///**/*******//*****\n\t/*    /**/**  /**/**////  /**  /** **////**  /////**    /**   **////**  /**   /**  /**/**////  /////**\n\t/******* //******//****** ***  /**//******** ******     //** //********/***   //******//****** ******\n\t///////   //////  ////// ///   //  //////// //////       //   //////// ///     //////  ////// //////");
 				 	Console.WriteLine("\t\t____________________________");
-				 	Console.WriteLine("\t\t|1_Registrar Cliente:      |\n\t\t|2_Quitar cliente          |\n\t\t|3_Generar Pedido          |\n\t\t|4_Eliminar Pedido         |\n\t\t|5_Registrar Servicio      |\n\t\t|6_Quitar Servicio         |\n\t\t|7_Listado de Cliente      |\n\t\t|8_Listado pedido          |\n\t\t|9_Listado Servicio        |\n\t\t|10_Salir                  |");
+				 	Console.WriteLine("\t\t|1_Registrar Cliente:      |\n\t\t|2_Quitar cliente         |\n\t\t|3_Registrar Servicio         |\n\t\t|4_Quitar Servicio         |\n\t\t|5_Generar Pedido         |\n\t\t|6_Eliminar Pedido         |\n\t\t|7_Listado de Cliente      |\n\t\t|8_Listado pedido          |\n\t\t|9_Listado Servicio        |\n\t\t|10_Pago_Cliente        |\n\t\t|11_Salir                  |");
 				 	Console.WriteLine("\t\t|__________________________|\n");
 				 	int opcion =  int.Parse(Console.ReadLine());
 				
-					if(opcion == 10)
+					if(opcion == 11)
 					{
 						condicion = false;
 					}
@@ -169,12 +126,27 @@ namespace Proyecto2023
 				{
 					
 					case 1://CREAR CLIENTE
+						int base_dni_check = 0;
+						Console.WriteLine ("ingrese el dni del cliente (en numeros)");
+						int dni= int.Parse(Console.ReadLine());
+						foreach(Cliente cliente in clientela)
+						{
+							if(cliente.Dni == dni)
+							{
+								base_dni_check++;
+							}
+						}
+						if(base_dni_check >  0)
+						{
+							Console.WriteLine("Error, usuario ya existente");
+							Console.ReadKey();
+							break;
+						}
+						
 						Console.WriteLine ("ingrese el nombre del cliente");
 						string nombre= Console.ReadLine();
 						Console.WriteLine ("ingrese el apellido del cliente");
 						string apellido=Console.ReadLine();
-						Console.WriteLine ("ingrese el dni del cliente (en numeros)");
-						int dni= int.Parse(Console.ReadLine());
 						Console.WriteLine ("ingrese la dirrecion del cliente");
 						string dirrection = Console.ReadLine();
 						Cliente thisCliente = new Cliente(dni, nombre, apellido, dirrection);
@@ -185,10 +157,48 @@ namespace Proyecto2023
 						int index= int.Parse(Console.ReadLine());
 						clientela.Remove(SelectCliente(index));
 						break;
-					case 3://CREAR PEDIDO
+					case 3://SERVICIO
+						id_servicio += 1;
+						Console.WriteLine ("ingrese el nombre del servicio: ");
+						string nomS= Console.ReadLine();
+						Console.WriteLine ("ingrese el tipo de servicio: ");
+						string tipo= Console.ReadLine();
+						Console.WriteLine ("ingrese una descripcion del servicio: ");
+						string descrip= Console.ReadLine();
+						Console.WriteLine ("ingrese el costo del servicio:(en numeros) ");
+						float costo= float.Parse(Console.ReadLine());
+						Servicio thisService = new Servicio(id_servicio, nomS, tipo, descrip, costo);
+						servicios.Add(thisService);
+						break;
+					case 4://QUITAR SERVICIO
+						Console.WriteLine ("ingrese el id del servicio a eliminar:(ingresar el dni de la persona en numeros) ");
+						int ident= int.Parse(Console.ReadLine());
+						if (ident>servicios.Count) {
+						Console.WriteLine("error no existe el servicio");
+							Console.ReadKey(true);
+							MenuPrincipalPanaderia();
+						}
+						servicios.Remove(SelectServicio(ident));
+						break;
+					case 5://CREAR PEDIDO
+						//FALTA AGREGAR EXEPCION DE 2 FECHAS
+						int dni_check = 0;
 						ArrayList thisServicios = new ArrayList();
 						Console.WriteLine("Que Cliente registra este pedido?( Ingresar el dni del cliente ): ");
 						int client = int.Parse(Console.ReadLine()); // Esta variable es el dni de un cliente y se envia como identificador del cliente a elejir
+						foreach(Cliente cliente in clientela)
+						{
+							if(cliente.Dni == client)
+							{
+								dni_check++;
+							}
+						}
+						if(dni_check == 0)
+						{
+							Console.WriteLine("Cliente inexistente, debe registrarse: ");
+							Console.ReadKey();
+							Ejecucion(1);
+						}
 						ListadoServicio();
 						Console.WriteLine("cuantos servicios incluira?  (ingrese el numero de servicios): ");
 						int serv_cant = int.Parse(Console.ReadLine());
@@ -201,6 +211,7 @@ namespace Proyecto2023
 						}
 						Console.WriteLine("Que Fecha se realizara este evento? ( ingresar la fecha en formato **/**/****): ");
 						DateTime fecha = DateTime.Parse(Console.ReadLine());
+						
 						Console.WriteLine("Cuantos mozos se requeriran?: (ingresar el numero de mozos) ");
 						int mozo = int.Parse(Console.ReadLine());
 						Console.WriteLine("Cuanto gastara en comida?:(ingresar el monto en numeros) ");
@@ -225,46 +236,37 @@ namespace Proyecto2023
 						}
 						Console.WriteLine("Cuantas bebidas necesitara este Evento?: (ingresar el numero de bebidas) ");
 						int bebida = int.Parse(Console.ReadLine());
-						Console.WriteLine("Cuanto costar en total el evento?: (ingresar el monto en numeros)");
-						float costoTotal = float.Parse(Console.ReadLine());
 						Console.WriteLine("Con cuanto se Seño este Evento?:(ingresar el monto en numeros) ");
 						float seña = float.Parse(Console.ReadLine());
-						Pedido ticket = new Pedido(SelectCliente(client), thisServicios, num_pedido, fecha, gastoComida, mozo, habra_manteleria, bebida, costoTotal, seña);
+						Pedido ticket = new Pedido(SelectCliente(client), thisServicios, num_pedido, fecha, gastoComida, mozo, habra_manteleria, bebida, seña);
 						num_pedido++;
 						pedidos.Add(ticket);
 						break;
-					case 4://QUITAR PEDIDO
+					case 6://QUITAR PEDIDO
+						DateTime fechaActual = DateTime.Now;
 						Console.WriteLine ("ingrese el numero de pedido a eliminar: ");
 						int numPedido= int.Parse(Console.ReadLine());
-						if (numPedido>pedidos.Count) {
-							Console.WriteLine("error no existe el Pedido");
-							Console.ReadKey(true);
-							MenuPrincipalPanaderia();
+						foreach(Pedido PD in pedidos)
+						{
+							if(PD.NumeroDePedido == num_pedido)
+							{
+								if(fechaActual.AddMonths(1) <  PD.FechaDelEvento)
+								{
+									pedidos.Remove(PD);
+									Console.WriteLine("Se ha cancelado sin problemas");
+								}
+								else
+								{
+									while(PD.Saldo <= 0)
+									{
+										Console.WriteLine("Debe abonar el pedido completo");
+										Console.ReadKey();
+										Ejecucion(10);
+									}
+								}
+							}
 						}
 						pedidos.Remove(SelectPedido(num_pedido));
-						break;
-					case 5://SERVICIO
-						id_servicio += 1;
-						Console.WriteLine ("ingrese el nombre del servicio: ");
-						string nomS= Console.ReadLine();
-						Console.WriteLine ("ingrese el tipo de servicio: ");
-						string tipo= Console.ReadLine();
-						Console.WriteLine ("ingrese una descripcion del servicio: ");
-						string descrip= Console.ReadLine();
-						Console.WriteLine ("ingrese el costo del servicio:(en numeros) ");
-						float costo= float.Parse(Console.ReadLine());
-						Servicio thisService = new Servicio(id_servicio, nomS, tipo, descrip, costo);
-						servicios.Add(thisService);
-						break;
-					case 6://QUITAR SERVICIO
-						Console.WriteLine ("ingrese el id del servicio a eliminar:(ingresar el dni de la persona en numeros) ");
-						int ident= int.Parse(Console.ReadLine());
-						if (ident>servicios.Count) {
-						Console.WriteLine("error no existe el servicio");
-							Console.ReadKey(true);
-							MenuPrincipalPanaderia();
-						}
-						servicios.Remove(SelectServicio(ident));
 						break;
 					case 7://LISTADO CLIENTE
 						ListadoCliente();
@@ -278,6 +280,22 @@ namespace Proyecto2023
 						ListadoServicio();
 						Console.ReadKey();
 						break;
+					case 10:
+						//PAGO CLIENTE
+						Console.WriteLine("Ingrese el numero de pedido a pagar: ");
+						int ident_pedido = int.Parse(Console.ReadLine());
+						foreach(Pedido pd in pedidos)
+						{
+							if(pd.NumeroDePedido == ident_pedido)
+							{
+								Console.WriteLine("Ingrese monto a pagar: ");
+								float pago = float.Parse(Console.ReadLine());
+								pd.Saldo -= pago;							
+							}
+						}
+						Console.ReadKey();
+						break;
+						
 					default:
 						Console.WriteLine("Error valor incorrecto");
 						Console.ReadKey();
@@ -399,7 +417,7 @@ namespace Proyecto2023
 					{
 						manteleria_condicion = "no";
 					}
-					Console.WriteLine("Numero de pedido: {0} \nDni del cliente: {1}\nFecha del evento: {2}\nServicios contratados: {3}\nContara con manteleria? {4}\nCantidad de mozos empleados: {5}\nCantidad de bebidas en stock: {6}\nValor de la seña: {7}\nCosto Total: {8}\nRestante a pagar: {9}\n", pd.NumeroDePedido, pd.CLIENTE.Dni, pd.FechaDelEvento, pd.RetornoServicio(), manteleria_condicion, pd.Mozos, pd.Bebidas, pd.Seña, pd.CostoTotal, pd.Saldo);
+					Console.WriteLine("Numero de pedido: {0} \nDni del cliente: {1}\nFecha del evento: {2}\nServicios contratados: {3}\nContara con manteleria? {4}\nCantidad de mozos empleados: {5}\nCantidad de bebidas en stock: {6}\nGasto en comida: {7}\nValor de la seña: {8}\nCosto Total: {9}\nRestante a pagar: {10}\n", pd.NumeroDePedido, pd.CLIENTE.Dni, pd.FechaDelEvento.Date, pd.RetornoServicio(), manteleria_condicion, pd.Mozos, pd.Bebidas, pd.GastoDeComida, pd.Seña, pd.CostoTotal, pd.Saldo);
 				}
 			}
 			//-------------------------------------------------------------------------------------------
@@ -443,7 +461,7 @@ namespace Proyecto2023
 				}
 				Cliente default_cliente = new Cliente(0, "null", "null", "null");
 				DateTime default_time = new DateTime(00, 00, 0000);
-				Pedido default_pedido = new Pedido(default_cliente, null, 0, default_time, 0, 0, false, 0, 0.0f, 0.0f);
+				Pedido default_pedido = new Pedido(default_cliente, null, 0, default_time, 0, 0, false, 0, 0.0f);
 				return default_pedido;
 			}
 		}

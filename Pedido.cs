@@ -32,7 +32,7 @@ namespace Proyecto2023
 		private Cliente cliente;
 		
 		//constructor
-		public Pedido(Cliente cliente, ArrayList newServicio, int numeroDePedido, DateTime fechaDelEvento, float gastoDeComida, int mozos, bool manteleria, int bebidas, float costoTotal, float seña)
+		public Pedido(Cliente cliente, ArrayList newServicio, int numeroDePedido, DateTime fechaDelEvento, float gastoDeComida, int mozos, bool manteleria, int bebidas, float seña)
 		{
 			this.numeroDePedido = numeroDePedido;
 			this.fechaDelEvento = fechaDelEvento;
@@ -40,7 +40,15 @@ namespace Proyecto2023
 			this.mozos = mozos;
 			this.manteleria = manteleria;
 			this.bebidas = bebidas;
-			this.costoTotal = costoTotal;
+			if(manteleria == true)
+			{
+				this.costoTotal = (mozos* 10000) + 2000 + (bebidas * 200) + gastoDeComida;
+			}
+			else
+			{
+				this.costoTotal = (mozos* 10000) + (bebidas * 200) + gastoDeComida;
+			}
+			
 			this.seña = seña;
 			this.saldo = costoTotal - seña;
 			this.cliente = cliente;
@@ -91,17 +99,12 @@ namespace Proyecto2023
 		//metodos
 		public string RetornoServicio()
 		{
-			ArrayList listado = new ArrayList();
-			
+			string devolver = "";
 			foreach(Servicio sv in servicio)
 			{
-				listado.Add(sv.NombreDelServicio);
+				devolver = devolver + sv.NombreDelServicio + ", ";
 			}
-			foreach(String nombreSERV in listado)
-			{
-				devuelto = devuelto + ", " + nombreSERV;
-			}
-			return devuelto;
+			return devolver;
 		}
 		
 	}
