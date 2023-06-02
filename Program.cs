@@ -138,6 +138,7 @@ namespace Proyecto2023
 						if(empresas.Count == 0)
 						{
 							Console.WriteLine("No existe ninguna empresa.");
+							Console.ReadKey();
 						}
 						else
 						{
@@ -145,16 +146,17 @@ namespace Proyecto2023
 							{
 								Console.WriteLine("\tEmpresas\n ID:{0} Empresa:{1}", muestra.ID, muestra.Nombre);
 							}
-						}
-						Console.WriteLine("Ingrese el id de la empresa a eliminar: ");	
-						int elim_id = int.Parse(Console.ReadLine());
-						foreach(Panaderia elimPAN in empresas)
-						{
-							if(elimPAN.ID == elim_id)
+							Console.WriteLine("Ingrese el id de la empresa a eliminar: ");	
+							int elim_id = int.Parse(Console.ReadLine());
+							foreach(Panaderia elimPAN in empresas)
 							{
-								empresas.Remove(elimPAN);
+								if(elimPAN.ID == elim_id)
+								{
+									empresas.Remove(elimPAN);
+								}
 							}
 						}
+						
 						break;
 				}
 			}
