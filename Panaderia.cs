@@ -21,6 +21,8 @@ namespace Proyecto2023
 			//Atributos propios de una panaderia
 			private int id;
 			private string nombre_panaderia;
+			public int ID{ get{return id;}}
+			public string Nombre{ get{return nombre_panaderia;}}
 			//Listados Importantes-------------------------------------------------
 			private static List<Cliente> clientela = new List<Cliente>();
 			private static List<Servicio> servicios = new List<Servicio>();
@@ -30,17 +32,15 @@ namespace Proyecto2023
 			private static int id_servicio = 0;
 			private static int num_pedido = 0;
 			private static bool habra_manteleria;
-			private static bool condicion = true;
+			private static bool condicion;
 			//------------------------------------------------------------------------
 			
 			//Constructor----------------------------------------------------------------
-			public Panaderia()
+			public Panaderia(int id, string nombre_panaderia, bool new_condicion)
 			{
-				Console.ForegroundColor = ConsoleColor.Red;
-				Title();
-				Console.ReadKey();
-				Console.Clear();
-				
+				this.id = id;
+				this.nombre_panaderia = nombre_panaderia;
+				condicion = new_condicion;
 				try
 				{
 					while(condicion)

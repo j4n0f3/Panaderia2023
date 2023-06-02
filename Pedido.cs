@@ -16,8 +16,6 @@ namespace Proyecto2023
 	/// </summary>
 	public class Pedido
 	{	
-		//Atributo de metodo
-		private static String devuelto;
 		//atributos
 		private int numeroDePedido ;
 		private DateTime fechaDelEvento; //fecha en numeros y todo junto
