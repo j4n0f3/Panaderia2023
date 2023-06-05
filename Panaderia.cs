@@ -22,7 +22,7 @@ namespace Proyecto2023
 			private int id;
 			private string nombre_panaderia;
 			public int ID{ get{return id;}}
-			public string Nombre{ get{return nombre_panaderia;}}
+			public string Nombre{ get{return nombre_panaderia;}set{nombre_panaderia = value;}}
 			//Listados Importantes-------------------------------------------------
 			private static List<Cliente> clientela = new List<Cliente>();
 			private static List<Servicio> servicios = new List<Servicio>();
@@ -55,31 +55,7 @@ namespace Proyecto2023
 				}
 			}
 			//------------------------------------------------------------------------
-			private static void Title()
-			{
-				
-		    	Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-		        Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-		        string title = @"
-                        		  *******      **     ****     **     **     *******   ******** *******   **     **        ****   ****   ****   ****
-                        		/**////**    ****   /**/**   /**    ****   /**////** /**///// /**////** /**    ****      */// * *///** */// * */// *
-                        		/**   /**   **//**  /**//**  /**   **//**  /**    /**/**      /**   /** /**   **//**    /    /*/*  */*/    /*/    /*
-                        		/*******   **  //** /** //** /**  **  //** /**    /**/******* /*******  /**  **  //**      *** /* * /*   ***    ***
-                        		/**////   **********/**  //**/** **********/**    /**/**////  /**///**  /** **********    *//  /**  /*  *//    /// *
-                        		/**      /**//////**/**   //****/**//////**/**    ** /**      /**  //** /**/**//////**   *     /*   /* *      *   /*
-                        		/**      /**     /**/**    //***/**     /**/*******  /********/**   //**/**/**     /**  /******/ **** /******/ ****
-                        		//       //      // //      /// //      // ///////   //////// //     // // //      //   //////  ////  //////  ////
-
-                                                                                                                                         
-
-";
-		        int consoleBufferWidth = Math.Max(Console.WindowWidth, title.Length);
-		        Console.SetBufferSize(consoleBufferWidth, Console.BufferHeight);
-		
-		        // Imprimir el arte ASCII centrado
-		        Console.WriteLine(title);
-		        
-			}
+			
 			
 			//Menu de panaderia----------------------------------------------------------------
 			private static void MenuPrincipalPanaderia()
@@ -181,8 +157,8 @@ namespace Proyecto2023
 						servicios.Remove(SelectServicio(ident));
 						break;
 					case 5://CREAR PEDIDO
-						//FALTA AGREGAR EXEPCION DE 2 FECHAS
 						int dni_check = 0;
+						int cantidad_pedidos = 0;
 						ArrayList thisServicios = new ArrayList();
 						Console.WriteLine("Que Cliente registra este pedido?( Ingresar el dni del cliente ): ");
 						int client = int.Parse(Console.ReadLine()); // Esta variable es el dni de un cliente y se envia como identificador del cliente a elejir
@@ -211,7 +187,21 @@ namespace Proyecto2023
 						}
 						Console.WriteLine("Que Fecha se realizara este evento? ( ingresar la fecha en formato **/**/****): ");
 						DateTime fecha = DateTime.Parse(Console.ReadLine());
-						
+						//checkeo de cantidad de pedidos para una misma fecha
+						foreach(Pedido PED in pedidos)
+						{
+							if(PED.FechaDelEvento == fecha)
+							{
+								cantidad_pedidos++;
+							}
+						}
+						if(cantidad_pedidos >2)
+						{
+							Console.WriteLine("Limite de pedidos para esta fecha alcanzada");
+							Console.ReadKey();
+							break;
+						}
+						//------------------------------------------------------------
 						Console.WriteLine("Cuantos mozos se requeriran?: (ingresar el numero de mozos) ");
 						int mozo = int.Parse(Console.ReadLine());
 						Console.WriteLine("Cuanto gastara en comida?:(ingresar el monto en numeros) ");
@@ -250,18 +240,29 @@ namespace Proyecto2023
 						{
 							if(PD.NumeroDePedido == num_pedido)
 							{
-								if(fechaActual.AddMonths(1) <  PD.FechaDelEvento)
+								if(PD.FechaDelEvento >= fechaActual && PD.Saldo <= 0)
 								{
 									pedidos.Remove(PD);
-									Console.WriteLine("Se ha cancelado sin problemas");
+									Console.WriteLine("Se ha cancelado sin problemas, la fecha del evento llego y su saldo fue pagado ");
+									Console.ReadKey();
 								}
 								else
 								{
-									while(PD.Saldo <= 0)
+									if(fechaActual.AddMonths(1) <  PD.FechaDelEvento)
 									{
-										Console.WriteLine("Debe abonar el pedido completo");
+										pedidos.Remove(PD);
+										Console.WriteLine("Se ha cancelado sin problemas");
 										Console.ReadKey();
-										Ejecucion(10);
+										break;
+									}
+									else
+									{
+										while(PD.Saldo <= 0)
+										{
+											Console.WriteLine("Debe abonar el pedido completo");
+											Console.ReadKey();
+											Ejecucion(10);
+										}
 									}
 								}
 							}
