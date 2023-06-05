@@ -16,6 +16,9 @@ namespace Proyecto2023
 	/// </summary>
 	public class Pedido
 	{	
+		/*
+		  * ACA SOLAMENTE DECLARAMOS LO QUE SERA CADA UNO DE NUESTROS PEDIDOS
+		*/
 		//atributos
 		private int numeroDePedido ;
 		private DateTime fechaDelEvento; //fecha en numeros y todo junto
@@ -38,6 +41,9 @@ namespace Proyecto2023
 			this.mozos = mozos;
 			this.manteleria = manteleria;
 			this.bebidas = bebidas;
+			/*
+			  * CHECKEAMOS QUE LA MANTELERIA INGRESADA SEA UN BOOL Y CALCULAMOS EL COSTO TOTAL EN BASE A ESTA RESPUESTA
+			  * */
 			if(manteleria == true)
 			{
 				this.costoTotal = (mozos* 10000) + 2000 + (bebidas * 200) + gastoDeComida;
@@ -100,6 +106,10 @@ namespace Proyecto2023
 			string devolver = "";
 			foreach(Servicio sv in servicio)
 			{
+				/*
+				  * DEVOLVEMOS UN ARRAY CON TODOS LOS SERVICIOS QUE INCLUIRA 
+				  * CUANDO SE LISTEN LOS PEDIDOS 
+				  * */
 				devolver = devolver + sv.NombreDelServicio + ", ";
 			}
 			return devolver;

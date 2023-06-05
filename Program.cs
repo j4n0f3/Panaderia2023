@@ -14,22 +14,26 @@ namespace Proyecto2023
 {
 	class Program
 	{
+		/*
+			  * ATRIBUTOS AUXILIARES PARA LA CREACION DE
+			  * LAS EMPRESAS PANADERAS
+		*/
 		private static int id = 0;
 		private static int exists = 0;
+		//-----------------------------------------
 		private static bool condicion = true;
 		private static List<Panaderia> empresas = new List<Panaderia>();
+		
 		public static void Main(string[] args)
 		{	
 			Console.ForegroundColor = ConsoleColor.Red;
-			foreach(Panaderia listado in empresas)
-			{
-				Console.WriteLine("Empresa: {0} Id: {1}", listado.Nombre, listado.ID);
-			}
+			
 			while(condicion)
 			{
 				Console.Clear();
 				try
 				{
+					//CHECKEO LA EXISTENCIA DE EMPRESAS PARA MOSTRARLAS
 					if(empresas.Count == 0)
 					{
 						Console.WriteLine("No existe ninguna empresa.");
@@ -41,6 +45,7 @@ namespace Proyecto2023
 							Console.WriteLine("\tEmpresas\n ID:{0} Empresa:{1}", muestra.ID, muestra.Nombre);
 						}
 					}
+					//TERMINO POR MOSTRAR EL MENU Y POSTERIORMENTE EJECUTAR
 					Console.WriteLine("\n1_Crear empresa \n2_Retomar Empresa \n3_Eliminar Empresa \n4_Renombrar \n5_Salir");
 					int opcion = int.Parse(Console.ReadLine());
 					if(opcion > 4)
@@ -49,7 +54,7 @@ namespace Proyecto2023
 					}
 					else
 					{
-						MENU(opcion);
+						EJECUCION(opcion);
 					}
 				}
 				catch(FormatException)
@@ -71,7 +76,7 @@ namespace Proyecto2023
 			}
 		}
 		
-		private static void MENU(int opcion)
+		private static void EJECUCION(int opcion)
 		{
 			Console.Clear();
 			try
@@ -82,6 +87,7 @@ namespace Proyecto2023
 					case 1:
 						Console.WriteLine("Ingrese el nombre de la panaderia: ");
 						string name = Console.ReadLine();
+						//CHECKEO LA EXISTENCIA DE ESTA EMPRESA
 						foreach(Panaderia creationPAN in empresas)
 						{
 							if(creationPAN.Nombre == name)
@@ -91,6 +97,7 @@ namespace Proyecto2023
 						}
 						if(exists == 0)
 						{
+							//EN CASO DE NO EXISTIR SE CREARA Y EJECUTARA LA EMPRESA
 							Panaderia pan = new Panaderia(id++, name, true);
 							empresas.Add(pan);
 						}
@@ -102,6 +109,7 @@ namespace Proyecto2023
 						break;
 					//RETOMANDO UNA EMPRESA
 					case 2:
+					//CHECKEA LA EXISTENCIA DE EMPRESAS EN EL LISTADO
 						if(empresas.Count == 0)
 						{
 							Console.WriteLine("No existe ninguna empresa.");
@@ -115,9 +123,15 @@ namespace Proyecto2023
 						}
 						if(empresas.Count > 0)
 						{
+							//EN CASO DE QUE HAYA EMPRESAS EN EL LISTADO, SE PEDIRA EL ID DE LA EMPRESA A ACCEDER
 							Console.WriteLine("Ingrese el id de la empresa a acceder: ");
 							int identificador = int.Parse(Console.ReadLine());
 							Panaderia aux = Returning_To(empresas[identificador]);
+							/*
+							  * TRAS CONSULTAR A QUE EMPRESA QUIERO ACCEDER LO QUE HAGO ES LLAMAR A RETURNING_TO PARA EJECUTAR UN
+							  * OBJETO NUEVO QUE HAYA GUARDADO LOS DATOS DEL OBJETO VIEJO PARA POSTERIORMENTE DECIR
+							  * QUE EL OBJETO VIEJO GUARDARA LOS DATOS QUE POSEE EL OBJETO NUEVO
+							  * */
 							for(int i = 0; i < empresas.Count -1; i++)
 							{
 								if(empresas[i].ID == aux.ID)
@@ -134,6 +148,7 @@ namespace Proyecto2023
 						break;
 					//ELIMINAR EMPRESA
 					case 3:
+					//CHECKEO DE EXISTENCIA DE EMPRESAS
 						if(empresas.Count == 0)
 						{
 							Console.WriteLine("No existe ninguna empresa.");
@@ -211,6 +226,9 @@ namespace Proyecto2023
 		}
 		private static Panaderia Returning_To(Panaderia pan)
 		{
+			/*
+			  * ACA INSTANCIO UN NUEVO OBJETO USANDO LOS DATOS DEL VIEJO 
+			  * */
 			Panaderia returning_panaderia = new Panaderia(pan.ID, pan.Nombre, true);
 			
 			return returning_panaderia;

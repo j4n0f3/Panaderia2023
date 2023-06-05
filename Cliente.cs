@@ -15,13 +15,13 @@ namespace Proyecto2023
 	/// </summary>
 	public class Cliente
 	{
+		/*
+		 * ACA SOLAMENTE DECLARAMOS LO QUE SERA CADA UNO DE NUESTROS CLIENTES
+		 */
 		//atributo 
 		private string nombre ;
-		
 		private string apellido;
-		
 		private int dni ;
-		
 		private string dirreccion;
 		
 		//constructor
@@ -48,6 +48,5 @@ namespace Proyecto2023
 		public string Dirreccion {
 			get { return dirreccion; }
 			set { dirreccion = value; }}
-		//metodos
 	}
 }
