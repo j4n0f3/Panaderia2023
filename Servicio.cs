@@ -15,7 +15,9 @@ namespace Proyecto2023
 	/// </summary>
 	public class Servicio
 	{
-		
+		/*
+		  * ACA SOLAMENTE DECLARAMOS LO QUE SERA CADA UNO DE NUESTROS SERVICIOS
+		  * */
 		//atributos
 		private int id;
 		private string nombreDelServicio;

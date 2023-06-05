@@ -19,16 +19,28 @@ namespace Proyecto2023
 	public class Panaderia
 	{
 			//Atributos propios de una panaderia
+			/*
+			  * ACA DECLARAMOS LA BASE DE LA PANADERIA, PROPIOS DE ELLOS Y NO DEPENDEN DE LAS
+			  * OTRAS CLASES PARA RELLENARSE(A EXCEPCION DEL MAIN)
+			  * */
 			private int id;
 			private string nombre_panaderia;
 			public int ID{ get{return id;}}
 			public string Nombre{ get{return nombre_panaderia;}set{nombre_panaderia = value;}}
 			//Listados Importantes-------------------------------------------------
+			/*
+			  * DONDE SE GUARDARAN CADA CLIENTE, SERVICIO Y PEDIDO PARA PODER ACCEDER A ELLOS
+			  * CUANDO SE REQUIERAN Y NO SE PIERDAN
+			  * */
 			private static List<Cliente> clientela = new List<Cliente>();
 			private static List<Servicio> servicios = new List<Servicio>();
 			private static List<Pedido> pedidos = new List<Pedido>();
 			//------------------------------------------------------------------------
 			//atributos---------------------------------------------------------------
+			/*
+			  * ATRIBUTOS AUXILIARES PARA LA RESOLUCION DE
+			  * ALGUNOS CASE
+			 */
 			private static int id_servicio = 0;
 			private static int num_pedido = 0;
 			private static bool habra_manteleria;
@@ -38,6 +50,9 @@ namespace Proyecto2023
 			//Constructor----------------------------------------------------------------
 			public Panaderia(int id, string nombre_panaderia, bool new_condicion)
 			{
+				/*
+				  * EL CONSTRUCTOR INSTANCIA EL MENU Y EL MENU RECIEN INSTANCIA LA EJECUCION DE CADA CASO
+				  * */
 				this.id = id;
 				this.nombre_panaderia = nombre_panaderia;
 				condicion = new_condicion;
@@ -70,7 +85,9 @@ namespace Proyecto2023
 				 	Console.WriteLine("\t\t|1_Registrar Cliente:      |\n\t\t|2_Quitar cliente         |\n\t\t|3_Registrar Servicio         |\n\t\t|4_Quitar Servicio         |\n\t\t|5_Generar Pedido         |\n\t\t|6_Eliminar Pedido         |\n\t\t|7_Listado de Cliente      |\n\t\t|8_Listado pedido          |\n\t\t|9_Listado Servicio        |\n\t\t|10_Pago_Cliente        |\n\t\t|11_Salir                  |");
 				 	Console.WriteLine("\t\t|__________________________|\n");
 				 	int opcion =  int.Parse(Console.ReadLine());
-				
+					/*
+					  * FINALIZO EN ESTE SITIO LA APLICACION PARA REDUCIR LA CANTIDAD DE OPCIONES A CHECKEAR EN CASO DE QUE SOLO QUISIERA SALIR
+					*/
 					if(opcion == 11)
 					{
 						condicion = false;
@@ -102,23 +119,29 @@ namespace Proyecto2023
 				{
 					
 					case 1://CREAR CLIENTE
-						int base_dni_check = 0;
+						/*
+						  * PRIMERO SE PREGUNTA POR EL DNI A AGREGAR, POSTERIORMENTE SE CHECKEA SI ESTE
+						  * CLIENTE EXISTE, EN CASO DE QUE EXISTA CAMBIARA LA EXISTENCIA DE ESE DNI Y
+						  * SOLTAR UN ERROR, FINALIZANDO EL PROCESO
+						  * */
+						bool dni_exists_check = false;
 						Console.WriteLine ("ingrese el dni del cliente (en numeros)");
 						int dni= int.Parse(Console.ReadLine());
 						foreach(Cliente cliente in clientela)
 						{
 							if(cliente.Dni == dni)
 							{
-								base_dni_check++;
+								dni_exists_check = true;
 							}
 						}
-						if(base_dni_check >  0)
+						if(dni_exists_check ==  true)
 						{
 							Console.WriteLine("Error, usuario ya existente");
 							Console.ReadKey();
 							break;
 						}
-						
+						//------------------------------------------------------------------------------
+						//TERMINA DE HACER LAS CONSULTAS DE AGREGADO
 						Console.WriteLine ("ingrese el nombre del cliente");
 						string nombre= Console.ReadLine();
 						Console.WriteLine ("ingrese el apellido del cliente");
@@ -129,11 +152,14 @@ namespace Proyecto2023
 						clientela.Add(thisCliente);
 						break;
 					case 2://ELIMINAR CLIENTE
+						ListadoCliente();
 						Console.WriteLine ("ingrese el dni del cliente a eliminar( en numeros): ");
 						int index= int.Parse(Console.ReadLine());
+						//REMUEVE EL CLIENTE OBTENIDO DEL METODO SELECTCLIENTE
 						clientela.Remove(SelectCliente(index));
 						break;
 					case 3://SERVICIO
+						//USANDO EL ATRIBUTO DECLARADO PREVIAMENTE ID_SERVICIO SE SABRA CUAL SERA EL ID DEL SERVICIO A AGREGAR Y PARA SABER LA CANTIDAD TOTAL HISTORICA DE AGREGADO DE SERVICIOS
 						id_servicio += 1;
 						Console.WriteLine ("ingrese el nombre del servicio: ");
 						string nomS= Console.ReadLine();
@@ -147,21 +173,36 @@ namespace Proyecto2023
 						servicios.Add(thisService);
 						break;
 					case 4://QUITAR SERVICIO
+						ListadoServicio();
 						Console.WriteLine ("ingrese el id del servicio a eliminar:(ingresar el dni de la persona en numeros) ");
 						int ident= int.Parse(Console.ReadLine());
+						/*
+						  * TRAS CONSULTAR EL ID DE QUIEN VAYA A QUITAR, SE COMPRUEBA LA EXISTENCIA DEL MISMO
+						  * EN CASO DE NO EXISTIR, SE REINICIARA LA CONSULTA*/
 						if (ident>servicios.Count) {
-						Console.WriteLine("error no existe el servicio");
+							Console.WriteLine("error no existe el servicio");
 							Console.ReadKey(true);
-							MenuPrincipalPanaderia();
+							Ejecucion(4);
+							break;
 						}
 						servicios.Remove(SelectServicio(ident));
 						break;
 					case 5://CREAR PEDIDO
+						/*
+						  * ATRIBUTOS AUXILIARES QUE SOLO SERAN UTILIZADOS EN
+						  * LA CREACION DEL PEDIDO
+						  * */
 						int dni_check = 0;
 						int cantidad_pedidos = 0;
 						ArrayList thisServicios = new ArrayList();
+						//---------------------------------------------------
+						ListadoCliente();
 						Console.WriteLine("Que Cliente registra este pedido?( Ingresar el dni del cliente ): ");
 						int client = int.Parse(Console.ReadLine()); // Esta variable es el dni de un cliente y se envia como identificador del cliente a elejir
+						/*
+						  * POSTERIOR A LA CONSULTA DEL CLIENTE A ASIGNAR EL PEDIDO, SE CHECKEA QUE EXISTA.
+						  * EN CASO DE NO EXISTIR SE INFORMARA EL ERROR Y FINALIZARA EL CASO
+						  * */
 						foreach(Cliente cliente in clientela)
 						{
 							if(cliente.Dni == client)
@@ -173,11 +214,13 @@ namespace Proyecto2023
 						{
 							Console.WriteLine("Cliente inexistente, debe registrarse: ");
 							Console.ReadKey();
-							Ejecucion(1);
+							break;
 						}
+						//--------------------------------------------------------------------------
 						ListadoServicio();
 						Console.WriteLine("cuantos servicios incluira?  (ingrese el numero de servicios): ");
 						int serv_cant = int.Parse(Console.ReadLine());
+						//SE CONSULTARAN Y AGREGARAN TANTOS SERVICIOS COMO SE HAYA REQUERIDO
 						for(int i = 0; i < serv_cant; i++)
 						{
 							Console.WriteLine("Que servicio incluira?(ingresar el ID): ");
@@ -208,6 +251,7 @@ namespace Proyecto2023
 						float gastoComida = float.Parse(Console.ReadLine());
 						Console.WriteLine("El Evento contara con manteleria?: (ingresar si o no)  ");
 						string condicion = Console.ReadLine();
+						//TRANSFORMAR LA RESPUESTA DE STRING A BOOL COMO LO REQUIERE EL CONSTRUCTOR DE PEDIDO
 						if(condicion == "si")
 						{
 							habra_manteleria = true;
@@ -234,8 +278,17 @@ namespace Proyecto2023
 						break;
 					case 6://QUITAR PEDIDO
 						DateTime fechaActual = DateTime.Now;
+						ListadoPedido();
 						Console.WriteLine ("ingrese el numero de pedido a eliminar: ");
 						int numPedido= int.Parse(Console.ReadLine());
+						/*
+						  * PRIMERO REVISA QUE EL NUMERO COINCIDA CON EL PEDIDO A MODIFICAR
+						  * EN CUANTO LO LOCALIZA CONSULTA SI YA FUE PAGADO EN SU TOTALIDAD EL PEDIDO Y YA FUE REALIZADO EN SU FECHA
+						  * EN CASO DE CUMPLIR ESTAS CONDICIONES SE PREGUNTARA SI EL TIEMPO PARA CANCELAR EL PEDIDO FUE PAGADO O ESTA A UN MES DE DARSE EL EVENTO
+						  * EN CASO DE POSITIVO A AMBOS PUNTOS SE ELIMINARA SIN PROBLEMA
+						  * EN CASO NEGATIVO, MIENTRAS NO SEA PAGADO EN SU TOTALIDAD SE REQUERIRA EL PAGO DEL SALDO RESTANTE SE LE PEDIRA CUMPLIR CON EL PAGO EN SU TOTALIDAD
+						  * POSTERIORMENTE TERMINARA EL LOOP DE PAGO Y SE ELIMINARA AUTOMATICAMENTE EL PEDIDO SOLICITADO
+						  * */
 						foreach(Pedido PD in pedidos)
 						{
 							if(PD.NumeroDePedido == num_pedido)
@@ -259,15 +312,15 @@ namespace Proyecto2023
 									{
 										while(PD.Saldo <= 0)
 										{
-											Console.WriteLine("Debe abonar el pedido completo");
+											Console.WriteLine("Debe abonar el pedido completo {0} PESOS", PD.Saldo);
 											Console.ReadKey();
 											Ejecucion(10);
 										}
+										pedidos.Remove(PD);
 									}
 								}
 							}
 						}
-						pedidos.Remove(SelectPedido(num_pedido));
 						break;
 					case 7://LISTADO CLIENTE
 						ListadoCliente();
@@ -335,8 +388,14 @@ namespace Proyecto2023
 			//----------------------------------------------------------------------------------------
 		
 			//Metodos para modificacion---------------------------------------------------------------
+			/*
+				  * AGARRA LOS LISTADOS, CREA UNO AUXILIAR
+				  * CHEQUEA LA ULTIMA POSICION DEL LISTADO Y LO AÑADE COMO PRIMERA POSICION EN EL EL LISTADO AUXILIAR
+				  * TERMINA POR IGUALAR EL LISTADO ORIGINAL AL AUXILIAR QUE FINALIZA CON LAS POSICIONES INTERCAMBIADAS
+			*/
 			public static void CambiarOrdenSERV()
 			{
+				
 				List<Servicio> aux = new List<Servicio>();
 				if(servicios.Count == 0)
 				{
@@ -410,6 +469,7 @@ namespace Proyecto2023
 				string manteleria_condicion;
 				foreach(Pedido pd in pedidos)
 				{
+					//PEDIDO GUARDA COMO BOOL LA CONDICION DE USO DE MANTELERIA, ACA SE LO TRANSFORMA EN STRING PARA SU POSTERIOR USO
 					if(pd.Manteleria == true)
 					{
 						manteleria_condicion = "si";
@@ -424,7 +484,9 @@ namespace Proyecto2023
 			//-------------------------------------------------------------------------------------------
 		
 			//Retorno-------------------------------------------------------------------------------------
-			
+			/*
+			  * METODOS QUE RECIBEN POR PARAMETROS EL IDENTIFICADOR DEL OBJETO SOLICITADO
+			  * LO DEVUELVE Y EN CASO DE NO EXISTIR EL MISMO DEVUELVE UN OBJETO PREDETERMINADO*/
 			private static Cliente SelectCliente(int identificador)
 			{
 				foreach(Cliente cl in clientela)
