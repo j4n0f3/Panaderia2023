@@ -41,9 +41,9 @@ namespace Proyecto2023
 							Console.WriteLine("\tEmpresas\n ID:{0} Empresa:{1}", muestra.ID, muestra.Nombre);
 						}
 					}
-					Console.WriteLine("\n1_Crear empresa \n2_Retomar Empresa \n3_Eliminar Empresa \n4_Salir");
+					Console.WriteLine("\n1_Crear empresa \n2_Retomar Empresa \n3_Eliminar Empresa \n4_Renombrar \n5_Salir");
 					int opcion = int.Parse(Console.ReadLine());
-					if(opcion >= 4)
+					if(opcion > 4)
 					{
 						condicion = false;
 					}
@@ -70,7 +70,6 @@ namespace Proyecto2023
 				
 			}
 		}
-		
 		
 		private static void MENU(int opcion)
 		{
@@ -154,6 +153,25 @@ namespace Proyecto2023
 								{
 									empresas.Remove(elimPAN);
 								}
+							}
+						}
+						break;
+					case 4:
+						foreach(Panaderia PN_A in empresas)
+						{
+							Console.WriteLine("id:{0} nombre:{1}", PN_A.ID, PN_A.Nombre);
+						}
+						
+						Console.WriteLine("Elija el id de la empresa a renombrar: ");
+						int id_change = int.Parse(Console.ReadLine());
+						
+						foreach(Panaderia PN_B in empresas)
+						{
+							if(PN_B.ID == id_change)
+							{
+								Console.WriteLine("Ingrese el nuevo nombre: ");
+								PN_B.Nombre = Console.ReadLine();
+								
 							}
 						}
 						
